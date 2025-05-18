@@ -1,4 +1,4 @@
-🎤 AI Food Song Generator
+**🎤 AI Food Song Generator**
 
 Welcome to my take on how to use AI and 2 of my favorite things: food and music.
 
@@ -33,7 +33,7 @@ or if you're like me: procrastinate doing stupid things like this instead of wor
 - OPENAI_API_KEY=your-openai-api-key-here
 
 3. Run the app
-python main.py
+- python main.py
 
 🤖 Tech stack
 - Python 3.12
