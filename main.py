@@ -1,3 +1,4 @@
+from speech_input import record, speech2text
 import random
 import time
 import os
@@ -31,12 +32,45 @@ def print_intro():
     print()
 
     time.sleep(1.5)
-    print("Get ready for hilarious, sarcastic songs about your favorite dishes!\n")
+    print("Get ready for hilarious, sarcastic songs about your (least?) favorite dishes!\n")
     time.sleep(1.5)
 
 
 def get_user_dish():
-    return input("Name a dish you love (or hate): (type 'exit' to quit)\n> ")
+    time.sleep(1)
+    print("How would you like to input your dish?")
+    time.sleep(1.5)
+    print("1. Type it")
+    time.sleep(1)
+    print("2. Say it 🎙️")
+    time.sleep(1)
+    print("3. Exit 🚪")
+    time.sleep(1)
+
+    choice = input("Your choice:\n> ").strip()
+
+    if choice == "3":
+        return "exit"
+
+    elif choice == "2":
+        try:
+            record()
+            dish = speech2text()
+            if not dish:
+                raise ValueError("Empty transcription result")
+            print(f"You said: {dish}")
+            return dish
+        except Exception as e:
+            print(f"\nSpeech input failed: {e}")
+            fallback = input("Fallback – type your dish instead:\n> ")
+            return fallback
+
+    elif choice == "1":
+        return input("Type your dish:\n> ")
+
+    else:
+        print("Invalid choice. Let's try again.\n")
+        return get_user_dish()
 
 
 def choose_style():
@@ -67,7 +101,7 @@ def choose_style():
         return "Sad Country Ballad"
     else:
         style = random.choice(styles)
-        print(f"\n🎲 Randomly chosen style: {style}\n")
+        print(f"\n🎲 Ok, because you can't decide, you're gonna get a song in this randomly chosen style: {style}\n")
         return style
 
 
@@ -104,7 +138,10 @@ def main():
     while True:
         dish = get_user_dish()
 
-        if dish.lower() == "exit":
+        if not dish:
+            continue
+
+        if dish.strip().lower() == "exit":
             print("\nGoodbye, you crazy chef! 👋")
             break
 
