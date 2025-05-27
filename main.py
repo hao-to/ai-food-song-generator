@@ -4,6 +4,8 @@ import time
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
+from text_to_speech import speak
+
 
 # Load API key from .env file
 load_dotenv()
@@ -151,6 +153,12 @@ def main():
         try:
             song = generate_song(prompt)
             print(f"\n🎵 Here is your {style.lower()} about {dish}: 🎵\n\n{song}\n")
+            time.sleep(1)
+
+            read_aloud = input("🔊 Do you want the song to be read aloud? (y/n)\n> ").strip().lower()
+            if read_aloud == "y":
+                speak(song)
+
         except Exception as e:
             print(f"\nOops! Something went wrong: {e}\n")
 
