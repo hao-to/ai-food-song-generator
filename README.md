@@ -36,6 +36,12 @@ Or, if you're like me: procrastinate working on *real* projects by doing this ki
 ```bash
 pip install -r requirements.txt
 ```
+⚠️ To play back the generated audio, you may need [FFmpeg](https://ffmpeg.org/) installed on your system.
+On macOS, you can install it with Homebrew:
+
+```bash
+brew install ffmpeg
+```
 
 2. Set up your environment
 
@@ -43,6 +49,8 @@ Create a .env file with your API keys:
 ```
 OPENAI_API_KEY=your-openai-api-key
 ASSEMBLYAI_API_KEY=your-assemblyai-key
+ELEVENLABS_API_KEY=your-elevenlabs-api-key
+
 ```
 
 3. **Run the app**  
@@ -58,6 +66,7 @@ python main.py
 - AssemblyAI Speech-to-Text API
 - dotenv for keeping API keys secret
 - sounddevice & scipy for recording audio
+- ElevenLabs Text-to-Speech API 
 
 ## 🛡️ License
 
@@ -69,6 +78,7 @@ MIT – feel free to remix this app into a metal ode to your leftovers.
 - More weird song styles
 - Maybe: autoplaying songs?
 - Maybe: saving lyrics to a file?
+- Optional: have your song read aloud using AI voices (enabled by ElevenLabs)
 - Maybe: never finishing serious projects again (because you'll create a one hit wonder or even a breakthrough album?) 🤷
 
 ## 💌 Author (me)
